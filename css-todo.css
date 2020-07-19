@@ -20,72 +20,6 @@ body {
   background-color: #fff;
   box-shadow: 0 0 10px #ddd;    
 }
-button {
-    font-weight: bold;
-    margin: 10px;
-    padding: 5px;
-    border: 2px solid #999;
-    border-radius: 5px;
-    background-color: #ff4141;
-    color: #fff;
-    }
-button:hover {
-    background-color: #999;
-    }
-button:active, button:focus {
-    border-color: #000;
-    background-color: #000;
-}
-.game {
-    background-color: gray;
-  }
-.row {
-  display: flex;
-}
-.row button {    
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.field {
-    position: relative;
-    margin: 20px;
-    width: 400px;
-    height: 400px;
-    background-color: yellow;
-}
-.ball {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  background-color: white;
-  animation: move 2s linear forwards;
-}
-@keyframes move {
-  from {
-      left: 0;
-      top: 0;
-  }
-  25% {
-    left: 350px;
-    top: 0;
-  }
-  50% {
-    left: 0;
-    top: 350px;
-  }
-  75% {
-    left: 350px;
-    top: 350px;
-  }
-  to {
-      left: 0;
-      top: 0;
-  }
-}
 .todo-wrapper {
   min-height: 759px;
   position: relative;
@@ -112,11 +46,12 @@ button:active, button:focus {
   margin-left: 16px;
   transition: opacity 0.5s;
 }
-/* .todo-menu__item img:focus {
+.todo-menu__item img {
+  transition: opacity .3s;
+}
+.todo-menu__item img:hover {
   opacity: 0.5;
-  outline: none;
-  border: none;
-} */
+}
 .todo-description {
   padding: 3px 0 16px 60px;
   opacity: 0.5;
@@ -137,20 +72,6 @@ button:active, button:focus {
   min-width: 28px;
   padding: 0 16px;
   height: 28px;
-}
-.todo-item__checkbox input:before {
-  content: "";
-    width: 28px;
-    height: 28px;
-    background: #b678ff;
-    position: absolute;
-    left: 16px;
-    bottom: 0px;
-    border: 2px solid rgb(255, 255, 255, 0.3);
-    border-radius: 100%;
-} 
-.todo-item__checkbox input:checked:before {
-  background: green;
 }
 .todo-item__description {
   width: 100%;
@@ -206,7 +127,8 @@ button:active, button:focus {
     bottom: 0px;
     border: 2px solid rgb(255, 255, 255, 0.3);
     border-radius: 100%;
+    transition: background-color .3s;
 } 
 .todo-item__checkbox input:checked:before {
-  background: #ffffff;
+  background: #cca1ff;
 }
