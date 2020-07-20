@@ -8,7 +8,7 @@ function pressBtn() {
         inptTasks.classList.remove('active-inline');
         btnPlus.innerText = '+';
         btnPlus.classList.remove('todo-save-button');
-        nameNewTask = inptTasks.children[0].value;
+        let nameNewTask = inptTasks.children[0].value;
         let newItem = document.createElement('div');
         newItem.classList.add('todo-item');
         newItem.innerHTML = `<div class="todo-item__checkbox">
@@ -20,11 +20,12 @@ function pressBtn() {
         </div>
     </div>`;
         document.querySelector('.todo-items').append(newItem);
-        console.log(nameNewTask);
+        arrOfTasks.push(nameNewTask);
+        localStorage.setItem('tasks', JSON.stringify(arrOfTasks));
     }
 }
 
 let btnPlus = document.querySelector('.todo-add-button');
 btnPlus.addEventListener('click', pressBtn);
 let inptTasks = document.querySelector('.todo-input');
-let nameNewTask;
+let arrOfTasks = JSON.parse(localStorage.getItem('tasks'));
