@@ -145,3 +145,6 @@ button.todo-add-button:focus {
 .todo-save-button {
   color: red;
 }
+.disabled {
+  display: none;
+}
