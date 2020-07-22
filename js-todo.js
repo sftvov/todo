@@ -13,25 +13,25 @@ function removeCheked() {
         }
     })
 }
-function setToLocalStorage() {
-    localStorage.setItem('tasks', JSON.stringify(arrOfTasks));
+function saveCurrentTask() {
+    let nameNewTask = inptTasks.children[0].value;
+    createMyTasks(nameNewTask);        
+    arrOfTasks.push(nameNewTask);
+    setToLocalStorage();
+    inptTasks.children[0].value = '';
+    inptTasks.classList.remove('active-inline');
+    btnPlus.innerText = '+';
+    btnPlus.classList.remove('todo-save-button');
 }
-function pressBtn() {    
-    let inptTasks = document.querySelector('.todo-input');
+function pressBtn() {
     if (!btnPlus.classList.contains('todo-save-button')) {     
         inptTasks.classList.add('active-inline');
+        inptTasks.children[0].focus();
         btnPlus.innerText = 's';
         btnPlus.classList.add('todo-save-button');
     }
     else {        
-        let nameNewTask = inptTasks.children[0].value;
-        createMyTasks(nameNewTask);        
-        arrOfTasks.push(nameNewTask);
-        setToLocalStorage();
-        inptTasks.children[0].value = '';
-        inptTasks.classList.remove('active-inline');
-        btnPlus.innerText = '+';
-        btnPlus.classList.remove('todo-save-button');
+        saveCurrentTask();
     }
 }
 function createMyTasks(task) {
@@ -49,6 +49,9 @@ function createMyTasks(task) {
         `;
         document.querySelector('.todo-items').append(newItem);
 }
+function setToLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(arrOfTasks));
+}
 let arrOfTasks = JSON.parse(localStorage.getItem('tasks'));
 if (arrOfTasks===null) {
     arrOfTasks = [];
@@ -62,3 +65,9 @@ let btnPlus = document.querySelector('.todo-add-button');
 btnPlus.addEventListener('click', pressBtn);
 let btnTrash = document.querySelector('#trash');
 btnTrash.addEventListener('click', removeCheked);
+let inptTasks = document.querySelector('.todo-input');
+inptTasks.addEventListener('keydown',(e) => {
+    if (e.keyCode === 13) {
+        saveCurrentTask();
+    }
+})
