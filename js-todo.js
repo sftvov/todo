@@ -1,11 +1,20 @@
 function removeCheked() {
-    let arrOfChecked = document.querySelectorAll('.todo-item__checkbox');
-    arrOfChecked.forEach(el => {
+    let arrOfChekbox = document.querySelectorAll('.todo-item__checkbox');
+    arrOfChekbox.forEach(el => {
         if (el.children[0].checked) {
-            el.parentElement.classList.add('disabled');            
+            el.parentElement.classList.add('disabled');
+            let todoItems = document.querySelector('.todo-items');
+            for (let i = 0; i < todoItems.childElementCount; i++) {
+                if (todoItems.children[i] === el.parentElement) {
+                    delete arrOfTasks[i];
+                    setToLocalStorage();
+                }          
+            }            
         }
     })
-    console.log(arrOfChecked);
+}
+function setToLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(arrOfTasks));
 }
 function pressBtn() {    
     let inptTasks = document.querySelector('.todo-input');
@@ -18,7 +27,7 @@ function pressBtn() {
         let nameNewTask = inptTasks.children[0].value;
         createMyTasks(nameNewTask);        
         arrOfTasks.push(nameNewTask);
-        localStorage.setItem('tasks', JSON.stringify(arrOfTasks));
+        setToLocalStorage();
         inptTasks.children[0].value = '';
         inptTasks.classList.remove('active-inline');
         btnPlus.innerText = '+';
@@ -44,7 +53,8 @@ let arrOfTasks = JSON.parse(localStorage.getItem('tasks'));
 if (arrOfTasks===null) {
     arrOfTasks = [];
 }
-else {
+else {debugger
+    arrOfTasks = arrOfTasks.filter(el => el !== null);
     arrOfTasks.forEach(el => createMyTasks(el));
 }
 let btnPlus = document.querySelector('.todo-add-button');
