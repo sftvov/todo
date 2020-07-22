@@ -53,8 +53,9 @@ let arrOfTasks = JSON.parse(localStorage.getItem('tasks'));
 if (arrOfTasks===null) {
     arrOfTasks = [];
 }
-else {debugger
+else {
     arrOfTasks = arrOfTasks.filter(el => el !== null);
+    setToLocalStorage();
     arrOfTasks.forEach(el => createMyTasks(el));
 }
 let btnPlus = document.querySelector('.todo-add-button');
