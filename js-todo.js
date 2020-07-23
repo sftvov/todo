@@ -19,13 +19,13 @@ function saveCurrentTask() {
     arrOfTasks.push(nameNewTask);
     setToLocalStorage();
     inptTasks.children[0].value = '';
-    inptTasks.classList.remove('active-inline');
+    inptTasks.classList.remove('active-block');
     btnPlus.innerText = '+';
     btnPlus.classList.remove('todo-save-button');
 }
 function pressBtn() {
     if (!btnPlus.classList.contains('todo-save-button')) {     
-        inptTasks.classList.add('active-inline');
+        inptTasks.classList.add('active-block');
         inptTasks.children[0].focus();
         btnPlus.innerText = 's';
         btnPlus.classList.add('todo-save-button');
